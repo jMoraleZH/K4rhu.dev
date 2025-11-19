@@ -1,0 +1,454 @@
+/* TIPOGRAFIA GENERAL */
+:root {
+    --bg: #050608;
+    --bg-alt: #0b0f16;
+    --fg: #f5f5f5;
+    --accent: #39ac31;
+    --accent-soft: rgba(57, 172, 49, 0.2)
+    --text: #e6eaf2;
+    --card-bg: #111827;
+    --border-soft: #1f2937;
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+/* ########################  INICIO  ###################################### */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*  #########################  CUERPO PAGINA  ############################## */
+body {
+    margin: 0;
+    font-family: "0xProto", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background:
+        radial-gradient(circle at top, #0aff7130, transparent 60%),
+        radial-gradient(circle at bottom right, #0aff7118, transparent 55%),
+        var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+@font-face {
+  font-family: "0xProto";
+  src: url("../assets/fonts/0xProtoNerdFont-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "0xProto";
+  src: url("../assets/fonts/0xProtoNerdFont-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "0xProto";
+  src: url("../assets/fonts/0xProtoNerdFont-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "0xProto";
+  src: url("../assets/fonts/0xProtoNerdFontPropo-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+/* ###########################  RESALTADO EN VERDE ######################## */
+.accent {
+  color: var(--accent);
+}
+
+/* ############################# CONTENEDOR RESPONSIVO (BARRA TITULO) ############# */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;;
+}
+
+/* #################################### HEADER ################################### */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 25px;
+    background: rgba(5, 7, 12, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0, 255, 140, 0.15);
+    box-shadow: 0 0 35px rgba(0, 255, 140, 0.18);
+    z-index: 1000;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0.75rem 0;
+    gap: 1rem;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--fg);
+}
+
+/* #############################  TEXTO  ########################################## */
+.brand-text {
+    font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  color: #e9ffe9;
+  text-shadow:
+    0 0 4px #0aff71,
+    0 0 12px #0aff71aa;
+}
+
+/* ##################################  LOGO FLOTANTE  ############################### */
+.brand-logo {
+    height: 52px;
+    width: auto;    
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(10, 255, 113, 0.7));
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.brand--glow:hover .brand-logo {
+  transform: translateY(-2px) scale(1.04);
+  filter:
+    drop-shadow(0 0 10px #0aff71)
+    drop-shadow(0 0 20px #06c955);
+}
+
+.logo-float {
+  position: absolute;
+  left: 25px;
+  bottom: -115px;
+  width: 150px;
+  height: 150px;
+  border-radius: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-float img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+}
+
+/* ##############################  GLITCH LOGO  ###################################### */
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -7px 0 #00e5ff;
+  clip-path: inset(0 0 0 0);
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: 15px 0 #ff005c;
+  clip-path: inset(0 0 0 0);
+}
+
+.glitch {
+  animation: glitch-main 4s infinite;
+}
+
+@keyframes glitch-main {
+  0%, 92%, 100% {
+    transform: none;
+  }
+  93% {
+    transform: skewX(-3deg);
+  }
+  94% {
+    transform: skewX(5deg) translateX(-1px);
+  }
+  95% {
+    transform: skewX(-2deg);
+  }
+}
+
+.glitch::before {
+  animation: glitch-before 4s infinite;
+}
+
+.glitch::after {
+  animation: glitch-after 5s infinite;
+}
+
+@keyframes glitch-before {
+  0%, 92%, 100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+  93% {
+    clip-path: inset(0 0 60% 0);
+    opacity: 1;
+  }
+  94% {
+    clip-path: inset(40% 0 10% 0);
+  }
+  95% {
+    clip-path: inset(10% 0 80% 0);
+  }
+}
+
+@keyframes glitch-after {
+  0%, 92%, 100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+  93% {
+    clip-path: inset(70% 0 0 0);
+    opacity: 1;
+  }
+  94% {
+    clip-path: inset(30% 0 30% 0);
+  }
+  95% {
+    clip-path: inset(0 0 80% 0);
+  }
+}
+
+/* #########################  CLASES HERO (TEXTO)  ################################ */
+.container-text {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .container-text {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+}
+
+.hero {
+    padding: 6rem 0 4rem;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        padding: 8rem 0 5rem;
+    }
+}
+
+.hero-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.hero-title h1 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    margin: 0 0 0.75rem;
+    color: #d1d5db;
+}
+
+.hero-text p {
+    margin: 0 0 1.5rem;
+    color: #d1d5db;
+}
+
+/* #################################  CARDS INDEX  ###################################### */
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 450px; /*VERIFICAR*/
+    margin: 0 50px;
+}
+
+.cards-grid .card a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--accent);
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.cards-grid .card a:hover {
+    text-decoration: underline;
+}
+
+.cards-grid {
+    margin-top: 0.5rem;
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80%;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+}
+
+.wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        to top,
+        transparent 46%,
+        rgba(12, 13, 19, 0.5) 68%,
+        rgba(12, 13, 19) 97%
+    );
+}
+
+.wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 46%,
+        rgba(12, 13, 19, 0.5) 68%,
+        rgba(12, 13, 19) 97%
+    );
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+    opacity: 1;
+}
+
+.card:hover .wrapper::after {
+    height: 120px;
+}
+
+.title {
+    width: 100%;
+    transition: transform 0.5s;
+}
+
+.card:hover .title {
+    transform: translate3d(0%, -50px, 100px);
+}
+
+.character {
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: -1;
+}
+
+.card:hover .character {
+    opacity: 1;
+    transform: translate3d(0%, -30%, 100px);
+}
+
+.layout-cards{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    padding: 0;
+    margin-top: 0.0rem;
+    justify-items: center;
+}
+
+@media (max-width: 900px) {
+    .layout-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .layout-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.section {
+    padding-top: 0rem;
+    padding-bottom: 6rem;
+}
+
+/* #############################  FOOTER  ######################################## */
+footer {
+    margin-top: auto;
+    padding: 14px 25px;
+    text-align: center;
+    width: 100%;
+    background: rgba(5, 7, 12, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 255, 140, 0.16);
+    color:  #bbb;
+    font-size: 0.85rem;
+}
