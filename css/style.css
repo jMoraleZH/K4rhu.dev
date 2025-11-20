@@ -303,15 +303,16 @@ body {
 
 /* #################################  CARDS INDEX  ###################################### */
 .card {
-    width: var(--card-width);
+    width: 100%;                  /* Que use el ancho de la columna */
+    max-width: var(--card-width); /* Límite bonito, pero flexible   */
     height: var(--card-height);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     padding: 0 36px;
-    perspective: 450px; /*VERIFICAR*/
-    margin: 0 50px;
+    perspective: 450px;
+    margin: 0;                    /* Dejamos que el gap del grid se encargue */
 }
 
 .cards-grid .card a {
@@ -425,26 +426,34 @@ body {
     transform: translate3d(0%, -30%, 100px);
 }
 
-.layout-cards{
+/* Como tienes un <div> envolviendo cada card, lo centramos */
+.layout-cards > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.layout-cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1.5rem;
     padding: 0;
-    margin-top: 0.0rem;
+    margin-top: 0;
     justify-items: center;
 }
 
 @media (max-width: 900px) {
     .layout-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 600px) {
     .layout-cards {
-        grid-template-columns: 1fr;
+         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
 
 .section {
     padding-top: 0rem;
@@ -600,8 +609,6 @@ b
   display: block;
 }
 
-/* ============== PÁGINA PROYECTOS ============== */
-
 body.proyectos-page {
   min-height: 100vh;
   background:
@@ -612,10 +619,7 @@ body.proyectos-page {
   background-position: top center, bottom left;
   background-size: auto, auto;
   background-attachment: fixed;
-}
-
-
-  
+} 
 
 /* Contenedor principal: texto + oso */
 .proyectos-hero {
